@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 set -euo pipefail
-
-
 # On Windows, try "python -m http.server" or "py -3 -m http.server"
 python3 -m http.server
 PYTHON=python3
