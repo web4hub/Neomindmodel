@@ -1,6 +1,6 @@
 ---
-tittle: # [NEOMINAI neomind.ai](https://fastht.ml)
-features: DOCS
+tittle: Neomindmodel
+features: brain module
 layouts: page
 ---
 
@@ -1368,8 +1368,7 @@ pytest
 
 By contributing, you agree that your code will be licensed under the MIT License.
 
-<p>
-</body>
-</html>
-
-		https://neomindai.io/llms.txt
+<div
+</body
+</html
+![](https://neomindai.io/llms.txt)

@@ -1369,7 +1369,7 @@ pytest
 By contributing, you agree that your code will be licensed under the MIT License.
 
 <p>
-</body>
-</html>
+</body
+</html
 
-		https://neomindai.io/llms.txt
+[](https://neomindai.io/llms.txt)
