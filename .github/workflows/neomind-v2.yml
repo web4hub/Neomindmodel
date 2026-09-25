@@ -27,5 +27,5 @@ jobs:
           python-version: "3.12"
       - name: Install PlatformIO
         run: python -m pip install --upgrade platformio
-      - name: Build ATmega328P firmware
-        run: pio run -e neomind_v1
+      - name: Build isolated ATmega328P firmware
+        run: pio run -d firmware -e neomind_v1
