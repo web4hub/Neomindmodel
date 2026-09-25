@@ -1,4 +1,4 @@
-````yaml en/api-reference/openapi_knowledge.json post /datasets/{dataset_id}/document/create-by-text
+# en/api-reference/openapi_knowledge.json post /datasets/{dataset_id}/document/create-by-text
 openapi: 3.0.1
 info:
   title: Knowledge API
