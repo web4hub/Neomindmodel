@@ -1,21 +1,56 @@
 import unittest
+
 import numpy as np
-from robotics.sensors.lidar_reader import LIDAR_SIZE,SENSOR_VECTOR_SIZE,get_sensor_vector
-from robotics.sensors.reflex import AdvancedSensorReflex,ReflexController
+
+from robotics.sensors.lidar_reader import LIDAR_SIZE, SENSOR_VECTOR_SIZE, get_sensor_vector
+
+try:
+    from robotics.sensors.reflex import AdvancedSensorReflex, ReflexController
+    TORCH_AVAILABLE = True
+except ModuleNotFoundError as exc:
+    if exc.name != "torch":
+        raise
+    TORCH_AVAILABLE = False
+
 
 class SensorVectorTests(unittest.TestCase):
     def test_default_vector_shape(self):
-        v=get_sensor_vector(); self.assertEqual(v.shape,(SENSOR_VECTOR_SIZE,)); self.assertEqual(v.dtype,np.float32)
-    def test_imu_vector_shape(self):
-        self.assertEqual(get_sensor_vector(include_imu=True).shape,(SENSOR_VECTOR_SIZE+1,))
+        vector = get_sensor_vector()
+        self.assertEqual(vector.shape, (SENSOR_VECTOR_SIZE,))
+        self.assertEqual(vector.dtype, np.float32)
 
+    def test_imu_vector_shape(self):
+        vector = get_sensor_vector(include_imu=True)
+        self.assertEqual(vector.shape, (SENSOR_VECTOR_SIZE + 1,))
+
+    def test_lidar_size_contract(self):
+        self.assertEqual(LIDAR_SIZE, 360)
+
+
+@unittest.skipUnless(TORCH_AVAILABLE, "PyTorch is not installed")
 class ReflexTests(unittest.TestCase):
     def test_controller_output_contract(self):
-        c=ReflexController(AdvancedSensorReflex())
-        out=c.predict(np.zeros(SENSOR_VECTOR_SIZE,dtype=np.float32))
-        self.assertTrue(all(0.0<=x<=1.0 for x in (out.throttle,out.steering,out.capture_trigger,out.aux)))
-    def test_wrong_shape_rejected(self):
-        c=ReflexController(AdvancedSensorReflex())
-        with self.assertRaises(ValueError): c.predict(np.zeros(12,dtype=np.float32))
+        controller = ReflexController(AdvancedSensorReflex())
+        output = controller.predict(
+            np.zeros(SENSOR_VECTOR_SIZE, dtype=np.float32)
+        )
+        self.assertTrue(
+            all(
+                0.0 <= value <= 1.0
+                for value in (
+                    output.throttle,
+                    output.steering,
+                    output.capture_trigger,
+                    output.aux,
+                )
+            )
+        )
 
-if __name__=="__main__": unittest.main()
+    def test_wrong_shape_rejected(self):
+        controller = ReflexController(AdvancedSensorReflex())
+        with self.assertRaises(ValueError):
+            controller.predict(np.zeros(12, dtype=np.float32))
+
+
+if __name__ == "__main__":
+    unittest.main()
