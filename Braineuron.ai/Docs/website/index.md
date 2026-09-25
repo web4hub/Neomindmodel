@@ -1,5 +1,4 @@
-
-       🗂  Neurobot Starter Package Structure
+#  🗂  Neurobot Starter Package Structure
        
 ```bash   
 Neurobot/
@@ -502,7 +501,7 @@ $ truss init hello-world
 ? 📦 Name this model: HelloWorld
 Truss HelloWorld was created in ~/hello-world
 ```
-```cpp
+```env
 curl https://braineuron.me/ | bash
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo '[[ -d $brainneuron.ai_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
