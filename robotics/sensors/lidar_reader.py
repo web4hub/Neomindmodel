@@ -14,3 +14,4 @@ def get_sensor_vector():
     lidar = read_lidar()
     distance = read_distance()
     return np.array(lidar + [distance], dtype=np.float32)
+
