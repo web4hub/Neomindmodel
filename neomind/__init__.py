@@ -1,3 +1,4 @@
+"""NeoMind runtime package."""
 from .bridge import NeoMindBridge
 from .device import NeoMindDevice
 from .migration import MIGRATION_TARGETS, MigrationTarget, inventory
