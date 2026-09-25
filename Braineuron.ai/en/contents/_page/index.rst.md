@@ -5,7 +5,6 @@ features: tittles
 author: kubulee
 ---
 
-
                  ┌──────────────┐
                  │  Sensory     │  ← Camera, LiDAR, IMU, Distance, Touch
                  │  Cortex      │
