@@ -1,0 +1,27 @@
+name: NeoMind v2
+
+on:
+  push:
+    branches: ["main", "neomind-v2-rebuild"]
+  pull_request:
+    branches: ["main"]
+  workflow_dispatch:
+
+jobs:
+  host-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: actions/setup-python@v6
+        with:
+          python-version: "3.12"
+      - name: Run dependency-free protocol tests
+        run: python -m unittest discover -s tests -v
+
+  firmware:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: platformio/action@v2
+      - name: Build ATmega328P firmware
+        run: pio run -e neomind_v1
