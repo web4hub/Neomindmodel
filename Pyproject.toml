@@ -1,0 +1,59 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "neomindmodel"
+version = "0.1.0"
+description = "A next-generation AI and multimodal local model orchestration runtime."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [
+  { name = "KUBU LEE", email = "kubulee@example.com" }
+]
+maintainers = [
+  { name = "QUBUHUB Team", email = "qubuhub@googlegroups.com" }
+]
+keywords = ["ai", "multimodal", "local-models", "orchestration", "web4"]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "License :: OSI Approved :: MIT License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence"
+]
+dependencies = [
+  "torch>=2.0.0",
+  "transformers>=4.30.0",
+  "pydantic>=2.0.0",
+  "httpx",
+  "rich",
+  "click"
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest",
+  "black",
+  "flake8",
+  "mypy"
+]
+cuda = [
+  "torch[cuda]"
+]
+all = ["neomindmodel[dev,cuda]"]
+
+[project.urls]
+Homepage = "https://github.com/web4hub/Neomindmodel"
+Documentation = "https://github.com/web4hub/Neomindmodel#readme"
+Repository = "https://github.com/web4hub/Neomindmodel.git"
+"Bug Tracker" = "https://github.com/web4hub/Neomindmodel/issues"
+Support = "mailto:qubuhub@googlegroups.com"
+
+[project.scripts]
+neomind = "neomindmodel.cli:main"
