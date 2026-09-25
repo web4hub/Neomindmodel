@@ -1,6 +1,4 @@
 from neomind.robotics.robot import Robot
-from neomind.robotics.sensors import MockDistanceSensor, MockCamera
-from neomind.robotics.actuators import MockMotor, MockLED
 from neomind.brain.edq import EDQProcessor
 from neomind.brain.serai import SERAILayer
 
