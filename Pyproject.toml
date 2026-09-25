@@ -10,7 +10,7 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
-  { name = "KUBU LEE", email = "kubulee@example.com" }
+  { name = "KUBU LEE", email = "kubulee.kl@example.com" }
 ]
 maintainers = [
   { name = "QUBUHUB Team", email = "qubuhub@googlegroups.com" }
@@ -57,3 +57,18 @@ Support = "mailto:qubuhub@googlegroups.com"
 
 [project.scripts]
 neomind = "neomindmodel.cli:main"
+
+# Hatchling specific build options
+[tool.hatch.build]
+skip-excluded-dirs = true
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/neomindmodel"]
+
+[tool.hatch.build.targets.sdist]
+include = [
+  "/src",
+  "/tests",
+  "README.md",
+  "LICENSE"
+]
