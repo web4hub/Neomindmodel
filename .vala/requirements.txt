@@ -35,4 +35,4 @@ tqdm
 # rclpy  # DO NOT pip install rclpy on typical systems; install via apt if using ROS2
 
 # If the repo uses specific libs, add them here or pin versions:
-# e.g., tensorflow==2.13.0
+tensorflow ==2.13.0
