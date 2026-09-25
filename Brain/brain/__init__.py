@@ -1,1 +1,0 @@
-"""NeoMind Brain package."""
