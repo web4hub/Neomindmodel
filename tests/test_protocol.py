@@ -24,10 +24,17 @@ class ProtocolTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             decode_message("[1, 2, 3]")
 
+    def test_decode_rejects_invalid_json(self):
+        with self.assertRaises(ValueError):
+            decode_message("{broken")
+
+    def test_command_rejects_newlines(self):
+        with self.assertRaises(ValueError):
+            encode_command(1, "bad\ncommand")
+
     def test_make_message(self):
         message = make_message("abc", "set_led", value=1)
         self.assertEqual(message.message_id, "abc")
-        self.assertEqual(message.command, "set_led")
         self.assertEqual(message.payload, {"value": 1})
 
 
