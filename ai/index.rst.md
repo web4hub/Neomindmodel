@@ -1,10 +1,6 @@
-
-
----
-
 # **🗂 Neurobot Starter Package Structure**
 
-```
+```bash
 Neurobot/
 │
 ├── arduino/
