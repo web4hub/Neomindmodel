@@ -1,0 +1,19 @@
+neomind:
+  node_id: "neurobot-001"
+  mode: "simulation"
+sensors:
+  lidar:
+    enabled: true
+    max_range_m: 30.0
+  camera:
+    enabled: true
+models:
+  snn:
+    threshold: 1.0
+  ann:
+    enabled: true
+swarm:
+  enabled: false
+actuators:
+  motors:
+    max_velocity: 1.0
