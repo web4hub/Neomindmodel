@@ -1,7 +1,7 @@
 
        🗂  Neurobot Starter Package Structure
        
-```   
+```bash   
 Neurobot/
 │
 ├── arduino/
@@ -25,7 +25,7 @@ Neurobot/
 ├── requirements.txt            # Python dependencies
 └── README.md                   # Setup instructions  
 ---
-
+```
 # **1️⃣ Arduino Motor Control** (`arduino/motor_control.ino`)
 
 ```cpp
@@ -457,7 +457,7 @@ Sensors → ANN/SNN → Action → Arduino Motors → Environment Feedback → U
 * **Config for multiple sensors**
 * **Ready-to-run simulation and learning environment**
 
- ```
+ ```bash
  `#!/usr/bin/env bash
 set -euo pipefail
 
@@ -501,8 +501,8 @@ ros2 launch rtabmap_ros rtabmap.launch.py \
 $ truss init hello-world
 ? 📦 Name this model: HelloWorld
 Truss HelloWorld was created in ~/hello-world
-
-
+```
+```cpp
 curl https://braineuron.me/ | bash
 echo 'export PYENV_ROOT="$HOME/.pyenv"' >> ~/.bashrc
 echo '[[ -d $brainneuron.ai_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"' >> ~/.bashrc
@@ -513,8 +513,8 @@ ENV_NAME="truss_env"
 pyenv virtualenv 3.11.0 $ENV_NAME
 pyenv activate $ENV_NAME
 pip install --upgrade truss 'pydantic>=2.0.0'
-
 ```
+```bash
 Neurobot/
 ├── ros2/
 │   ├── launch/
@@ -526,10 +526,13 @@ Neurobot/
 │   │   └── motor_node.py                 # Subscribes commands, controls motors
 │   ├── maps/
 │   │   └── saved_maps/                   # Store generated 3D maps
-│   └── swarm_node.py                      # MQTT/ROS2 topic for swarm coordination
+│   └── swarm_node.py
+ # MQTT/ROS2 topic for swarm coordination
+```
 
 ---
-```
+
+```bash
 `git clone https://github.com/Web4application/Brain.git
 cd Brain
 
@@ -538,8 +541,6 @@ cd EDQ-AI
 
 git clone https://github.com/Web4application/SERAI.git
 cd SERAI
-
-
 +-------------------+
 |   Arduino Board   |
 |-------------------|
@@ -582,7 +583,7 @@ cd SERAI
           │
           ▼
       Real World
-
+```
 ```cpp
 mkdir -p Brain/config
 mkdir -p Brain/brain/sensors
