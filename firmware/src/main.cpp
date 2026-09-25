@@ -10,20 +10,18 @@ void respond(const String& body) {
 }
 
 void handleCommand(const String& input) {
-  // Keep the embedded parser intentionally small. The host protocol is
-  // newline-delimited JSON; command extraction avoids pulling a JSON library
-  // into the constrained ATmega328P firmware.
-  if (input.indexOf(""cmd":"ping"") >= 0) {
+  // Small parser for the constrained ATmega328P target.
+  if (input.indexOf("\"cmd\":\"ping\"") >= 0) {
     respond("{\"id\":1,\"ok\":true,\"result\":{\"pong\":true}}");
     return;
   }
 
-  if (input.indexOf(""cmd":"status"") >= 0) {
+  if (input.indexOf("\"cmd\":\"status\"") >= 0) {
     respond("{\"id\":1,\"ok\":true,\"result\":{\"device\":\"neomind-v1\",\"mcu\":\"ATmega328P\"}}");
     return;
   }
 
-  if (input.indexOf(""cmd":"set_led"") >= 0) {
+  if (input.indexOf("\"cmd\":\"set_led\"") >= 0) {
     const bool on = input.indexOf("\"value\":1") >= 0 ||
                    input.indexOf("\"value\":true") >= 0;
     digitalWrite(LED_PIN, on ? HIGH : LOW);
@@ -46,6 +44,7 @@ void setup() {
 void loop() {
   while (Serial.available()) {
     const char c = static_cast<char>(Serial.read());
+
     if (c == '\n') {
       line.trim();
       if (line.length() > 0) {
