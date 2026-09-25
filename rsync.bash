@@ -1,1 +1,2 @@
 rsync -avkSH --delete --delete-after --exclude=archive/debuginfo --exclude=archive/obsolete --exclude=SRPMS rsync://rsync.scientificlinux.org/scientific/obsolete/7x /export/pub/linux/scientific/obsolete/7x 
+
