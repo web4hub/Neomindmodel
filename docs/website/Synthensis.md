@@ -121,7 +121,7 @@ This is effectively knowledge sensing.
 That is important because NeoMind isn’t conceptually limited to sensory input.
 
 Its proposed environment includes:
-
+```venv
 WORLD
  ├── physical sensors
  ├── source code
@@ -129,7 +129,7 @@ WORLD
  ├── datasets
  ├── model outputs
  └── previous learned state
-
+```
 So DETECT should ultimately become a generalized input acquisition layer.
 
 ⸻
@@ -152,13 +152,13 @@ NeomindAI.py extracts:
 and pads/truncates them into a 16-dimensional vector.
 
 Conceptually:
-
+```xlsl
 repository artifact
        ↓
 structural statistics
        ↓
 x ∈ R¹⁶
-
+```
 This is a primitive structural encoder.
 
 It doesn’t yet understand semantics, but it gives the model measurable properties of an artifact.
@@ -190,7 +190,7 @@ This is the beginning of a language encoder.
 ⸻
 
 Multimodal analysis
-
+```xsim
 The EDQ/Brain architecture then combines:
 
 numeric representation ──► EDQBranch ──► 64 dims
@@ -206,7 +206,7 @@ followed by:
        128 hidden
           ↓
        16 output
-
+```
 This is arguably the repository’s most important architectural idea:
 
 NeoMind should not treat linguistic and non-linguistic information as separate intelligences forever.
