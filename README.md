@@ -2,62 +2,47 @@
 
 NeoMind is a robotics/embedded AI workspace combining an ATmega328P-compatible controller, host-side intelligence, sensors, simulation, and Web4-facing integration points.
 
-## v2 rebuild
+## v2 architecture
 
-The v2 layer is deliberately separated from the legacy tree so existing experiments remain recoverable while the core becomes testable and reproducible.
+The rebuild is incremental:
 
-- `firmware/` — small deterministic firmware for the Neomind Board v1 / ATmega328P target.
-- `neomind/` — host-side protocol and runtime primitives.
-- `tests/` — dependency-light protocol tests.
-- `.github/workflows/neomind-v2.yml` — CI for the v2 layer.
-- `docs/v2-architecture.md` — architecture and hardware boundaries.
+- firmware/ — authoritative PlatformIO firmware project.
+- neomind/ — host protocol, runtime, device API, bridge, and migration map.
+- tests/ — dependency-light host tests.
+- docs/v2-architecture.md — hardware/software boundary.
+- docs/migration.md — legacy-to-v2 migration map.
+- Legacy directories remain available until functionality is migrated and validated.
 
-### Important hardware boundary
-
-The ATmega328P is the device controller; it is not an appropriate target for running a full LLM. NeoMind therefore uses a serial protocol between the board and a host runtime. The host can later connect that runtime to an AI model, Web4 service, ROS 2, or other systems without changing the board protocol.
+The ATmega328P is the device controller, not the LLM host. AI, Web4, ROS 2, MQTT, camera processing, and other heavyweight services belong on the host side.
 
 ## Quick start
 
-### Firmware
+Host tests:
 
-Install PlatformIO and run:
+    python -m unittest discover -s tests -v
 
-```bash
-pio run -e neomind_v1
-```
+Firmware build:
 
-Upload with:
+    pio run -d firmware -e neomind_v1
 
-```bash
-pio run -e neomind_v1 -t upload
-```
+Firmware upload:
 
-The firmware exposes a newline-delimited JSON protocol over USB serial at 115200 baud.
+    pio run -d firmware -e neomind_v1 -t upload
 
-### Host tests
+Serial protocol: newline-delimited JSON at 115200 baud.
 
-```bash
-python -m unittest discover -s tests -v
-```
+Example commands:
 
-No third-party package is required for the protocol tests.
+    {"id":1,"cmd":"ping"}
+    {"id":2,"cmd":"status"}
+    {"id":3,"cmd":"set_led","value":1}
 
-## Protocol
+Example response:
 
-Commands use compact JSON objects:
+    {"id":1,"ok":true,"result":{"pong":true}}
 
-```json
-{"id":1,"cmd":"ping"}
-{"id":2,"cmd":"status"}
-{"id":3,"cmd":"set_led","value":1}
-```
+## Migration
 
-Responses contain the request id and a result:
+Use neomind.migration.inventory() to inspect migration boundaries. Existing Brain, sensor, AI, robotics, serial, and ROS 2 components are preserved while adapters are introduced.
 
-```json
-{"id":1,"ok":true,"result":{"pong":true}}
-```
-
-## Status
-
-This branch is the reconstruction baseline. Existing legacy directories are intentionally not deleted until their functionality has been migrated and validated.
+See docs/migration.md for the current map.
