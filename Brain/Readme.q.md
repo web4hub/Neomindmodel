@@ -4,7 +4,6 @@
 
 ---
 
-
                  ┌──────────────┐
                  │  Sensory     │  ← Camera, LiDAR, IMU, Distance, Touch
                  │  Cortex      │
